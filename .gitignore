@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+chand-sewing-frontend/node_modules/
+chand-sewing-backend/node_modules/
+
+# Environment variables — NEVER commit these, they contain secrets
+.env
+.env.local
+.env.*.local
+chand-sewing-frontend/.env
+chand-sewing-backend/.env
+
+# Production builds
+chand-sewing-frontend/build/
+chand-sewing-backend/dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/

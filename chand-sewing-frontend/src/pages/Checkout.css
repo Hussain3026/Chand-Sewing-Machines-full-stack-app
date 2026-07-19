@@ -1,0 +1,127 @@
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkout-block {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.checkout-block h4 {
+  margin: 0 0 14px;
+  color: var(--navy);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.checkout-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.checkout-grid label.span-2 {
+  grid-column: 1 / -1;
+}
+
+.checkout-grid input {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  outline: none;
+}
+
+.checkout-grid input:focus {
+  border-color: var(--purple);
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--navy);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.payment-option input {
+  accent-color: var(--purple);
+  width: 16px;
+  height: 16px;
+}
+
+.payment-note {
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.checkout-summary {
+  top: 16px;
+}
+
+.checkout-summary .summary-row span:first-child {
+  max-width: 65%;
+}
+
+@media (max-width: 800px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.saved-address-banner {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.saved-address-banner button {
+  background: none;
+  border: none;
+  color: var(--purple);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 12.5px;
+  text-decoration: underline;
+}

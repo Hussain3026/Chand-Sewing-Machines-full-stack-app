@@ -1,0 +1,104 @@
+.countryDrop {
+  text-transform: none !important;
+  border: 1px solid #ddd !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  min-width: 150px !important;
+  color: var(--navy, #1b2a4a) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+}
+
+.countryDrop .info {
+  text-align: left;
+}
+
+.countryDrop .label {
+  font-size: 10px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.countryDrop .name {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--navy, #1b2a4a);
+}
+
+.locationModel .MuiDialog-paper {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 14px;
+  padding: 24px;
+  position: relative;
+}
+
+.locationModel h4 {
+  margin: 0 0 16px;
+  color: var(--navy, #1b2a4a);
+  font-size: 18px;
+}
+
+.locationModel h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #6b7280);
+  margin: 4px 0 10px;
+}
+
+.locationModel .headerSearch input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.locationList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+.locationList li button {
+  width: 100%;
+  text-align: left;
+  text-transform: none !important;
+  justify-content: flex-start !important;
+  color: var(--navy, #1b2a4a) !important;
+  font-size: 13.5px !important;
+  padding: 8px 10px !important;
+  border-radius: 6px !important;
+}
+
+.locationList li button:hover {
+  background: var(--bg, #f5f6fa) !important;
+}
+
+.locationModel .close {
+  position: absolute !important;
+  top: 12px;
+  right: 12px;
+  min-width: auto !important;
+  width: 34px;
+  height: 34px;
+  border-radius: 50% !important;
+  background: #f1f2f5 !important;
+  color: var(--navy, #1b2a4a) !important;
+}
+
+@media (max-width: 500px) {
+  .locationList {
+    grid-template-columns: 1fr;
+  }
+}

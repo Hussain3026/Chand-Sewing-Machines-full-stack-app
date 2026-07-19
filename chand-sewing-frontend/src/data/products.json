@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "title": "Singer Heavy Duty 4423 Sewing Machine",
+    "category": "Sewing Machines",
+    "image": "https://images.unsplash.com/photo-1520962880247-cfaf541c8724?w=600&q=80",
+    "price": 12999,
+    "description": "A powerful, high-speed sewing machine built for heavy fabrics like denim and canvas. Comes with 23 built-in stitches, automatic needle threader, and a stainless steel bedplate for smooth fabric feeding.",
+    "rating": 4.6,
+    "ratingCount": 128
+  },
+  {
+    "id": 2,
+    "title": "Brother Innov-is Embroidery Machine",
+    "category": "Embroidery Machines",
+    "image": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&q=80",
+    "price": 45999,
+    "description": "Computerized embroidery machine with a large embroidery field, USB connectivity, and built-in designs. Ideal for boutiques and professional embroidery studios.",
+    "rating": 4.8,
+    "ratingCount": 76
+  },
+  {
+    "id": 3,
+    "title": "Juki MO-654DE Overlock Machine",
+    "category": "Overlock Machines",
+    "image": "https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?w=600&q=80",
+    "price": 27999,
+    "description": "A 2/3/4 thread overlock machine offering clean, professional seam finishing at high speed. Perfect for garment manufacturing and tailoring units.",
+    "rating": 4.5,
+    "ratingCount": 54
+  },
+  {
+    "id": 4,
+    "title": "Usha Janome Dream Stitch Sewing Machine",
+    "category": "Sewing Machines",
+    "image": "https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=600&q=80",
+    "price": 8499,
+    "description": "Compact and beginner-friendly sewing machine with 10 built-in stitch patterns, ideal for home use and small tailoring setups.",
+    "rating": 4.3,
+    "ratingCount": 210
+  },
+  {
+    "id": 5,
+    "title": "HSW 5G Multi-Head Embroidery Machine",
+    "category": "Embroidery Machines",
+    "image": "https://images.unsplash.com/photo-1620206439610-628b7f7f2b64?w=600&q=80",
+    "price": 289999,
+    "description": "Industrial multi-head embroidery machine with high-speed touch panel controls, suited for large-scale production units and commercial embroidery.",
+    "rating": 4.9,
+    "ratingCount": 22
+  },
+  {
+    "id": 6,
+    "title": "Sewing Machine Bobbins (Pack of 10)",
+    "category": "Spare Parts",
+    "image": "https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?w=600&q=80",
+    "price": 249,
+    "description": "Durable metal bobbins compatible with most domestic sewing machine models. Pack of 10 for uninterrupted stitching sessions.",
+    "rating": 4.2,
+    "ratingCount": 340
+  },
+  {
+    "id": 7,
+    "title": "Universal Sewing Machine Needles Set",
+    "category": "Spare Parts",
+    "image": "https://images.unsplash.com/photo-1524634126442-357e0eac3c14?w=600&q=80",
+    "price": 199,
+    "description": "Assorted sizes of universal sewing needles suitable for cotton, denim, silk, and knit fabrics. Compatible with most home sewing machines.",
+    "rating": 4.4,
+    "ratingCount": 189
+  },
+  {
+    "id": 8,
+    "title": "Adjustable Sewing Machine Table Stand",
+    "category": "Accessories",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    "price": 3499,
+    "description": "Sturdy foldable table stand designed for industrial and domestic sewing machines, with height adjustment and wheel locks for stability.",
+    "rating": 4.1,
+    "ratingCount": 63
+  },
+  {
+    "id": 9,
+    "title": "Brother XR3774 Sewing & Quilting Machine",
+    "category": "Sewing Machines",
+    "image": "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=600&q=80",
+    "price": 15999,
+    "description": "Versatile machine with 37 built-in stitches, wide table for quilting projects, and automatic needle threading for effortless setup.",
+    "rating": 4.7,
+    "ratingCount": 97
+  },
+  {
+    "id": 10,
+    "title": "Pegasus 5-Thread Overlock Machine",
+    "category": "Overlock Machines",
+    "image": "https://images.unsplash.com/photo-1591196565358-2d8a1c9e0b3b?w=600&q=80",
+    "price": 34999,
+    "description": "Industrial-grade 5-thread overlock machine for high-volume garment finishing, offering exceptional durability and stitch consistency.",
+    "rating": 4.6,
+    "ratingCount": 41
+  },
+  {
+    "id": 11,
+    "title": "Sewing Machine Presser Foot Set (12-in-1)",
+    "category": "Accessories",
+    "image": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80",
+    "price": 899,
+    "description": "A 12-piece presser foot kit covering zipper insertion, buttonholes, hemming, and quilting — compatible with most low-shank home machines.",
+    "rating": 4.3,
+    "ratingCount": 156
+  },
+  {
+    "id": 12,
+    "title": "Singer Tradition 2273 Sewing Machine",
+    "category": "Sewing Machines",
+    "image": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&q=80",
+    "price": 9999,
+    "description": "Reliable all-metal frame sewing machine with 23 built-in stitches, four-step buttonhole, and a free arm for cuffs and sleeves.",
+    "rating": 4.5,
+    "ratingCount": 174
+  },
+  {
+    "id": 13,
+    "title": "Computerized Single Head Embroidery Machine",
+    "category": "Embroidery Machines",
+    "image": "https://images.unsplash.com/photo-1591196565358-2d8a1c9e0b3b?w=600&q=80",
+    "price": 98999,
+    "description": "Single-head computerized embroidery machine with 9-needle color changer, ideal for small-batch commercial embroidery work.",
+    "rating": 4.7,
+    "ratingCount": 33
+  },
+  {
+    "id": 14,
+    "title": "Sewing Machine Motor (Servo, 550W)",
+    "category": "Spare Parts",
+    "image": "https://images.unsplash.com/photo-1503602642458-232111445657?w=600&q=80",
+    "price": 4599,
+    "description": "Energy-efficient servo motor replacement for industrial sewing machines, offering quiet operation and precise speed control.",
+    "rating": 4.4,
+    "ratingCount": 58
+  },
+  {
+    "id": 15,
+    "title": "Sewing Kit Storage Organizer Box",
+    "category": "Accessories",
+    "image": "https://images.unsplash.com/photo-1584367369853-8b966cf13cf9?w=600&q=80",
+    "price": 799,
+    "description": "Multi-compartment storage box for threads, needles, bobbins, and small tools — keeps your workstation organized and tidy.",
+    "rating": 4.2,
+    "ratingCount": 112
+  },
+  {
+    "id": 16,
+    "title": "Juki DDL-8700 Industrial Straight Stitch Machine",
+    "category": "Sewing Machines",
+    "image": "https://images.unsplash.com/photo-1544441893-675973e31985?w=600&q=80",
+    "price": 42999,
+    "description": "High-speed, single-needle, lock-stitch industrial machine trusted by garment factories worldwide for speed and precision.",
+    "rating": 4.8,
+    "ratingCount": 88
+  },
+  {
+    "id": 17,
+    "title": "Portable Mini Overlock Machine",
+    "category": "Overlock Machines",
+    "image": "https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?w=600&q=80",
+    "price": 6999,
+    "description": "Compact and lightweight overlocker suited for home tailors and small alterations businesses, with easy threading and low noise.",
+    "rating": 4.0,
+    "ratingCount": 47
+  },
+  {
+    "id": 18,
+    "title": "Embroidery Hoop Set (5 Sizes)",
+    "category": "Accessories",
+    "image": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=600&q=80",
+    "price": 449,
+    "description": "Wooden embroidery hoop set in five common sizes, perfect for hand embroidery projects and framing finished pieces.",
+    "rating": 4.3,
+    "ratingCount": 201
+  },
+  {
+    "id": 19,
+    "title": "High-Speed Bobbin Winder Attachment",
+    "category": "Spare Parts",
+    "image": "https://images.unsplash.com/photo-1524634126442-357e0eac3c14?w=600&q=80",
+    "price": 649,
+    "description": "External bobbin winder attachment that speeds up bobbin preparation, compatible with most industrial and domestic machines.",
+    "rating": 4.1,
+    "ratingCount": 39
+  },
+  {
+    "id": 20,
+    "title": "HSW Cap Embroidery Machine",
+    "category": "Embroidery Machines",
+    "image": "https://images.unsplash.com/photo-1620206439610-628b7f7f2b64?w=600&q=80",
+    "price": 165999,
+    "description": "Specialized embroidery machine with cap-frame attachment for embroidering caps, hats, and curved surfaces with high precision.",
+    "rating": 4.6,
+    "ratingCount": 19
+  }
+]

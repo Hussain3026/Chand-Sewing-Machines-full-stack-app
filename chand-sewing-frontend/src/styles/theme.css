@@ -1,0 +1,99 @@
+/*
+  Chand Sewing Machines — global design tokens.
+  Colors are picked to match your existing header (navy logo text)
+  and announcement bar (purple). Import this ONCE in src/index.js,
+  after your existing global stylesheet, so it doesn't override it.
+*/
+
+:root {
+  --navy: #1b2a4a;
+  --navy-light: #2c3e63;
+  --purple: #8e0aa0;
+  --purple-dark: #6a0778;
+  --gold: #f5a623;
+  --danger: #e53935;
+  --success: #1e8e3e;
+  --bg: #f5f6fa;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+  --text-muted: #6b7280;
+
+  --radius: 10px;
+  --container-width: 1280px;
+}
+
+.section-wrap {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.section-heading h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0;
+}
+
+.section-heading p {
+  color: var(--text-muted);
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.view-all-link {
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.view-all-link:hover {
+  background: var(--navy);
+  color: #fff;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1100px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .section-wrap {
+    padding: 28px 14px;
+  }
+}
+
+body {
+  background: var(--bg);
+}

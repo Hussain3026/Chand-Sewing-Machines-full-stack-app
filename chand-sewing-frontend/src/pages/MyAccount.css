@@ -1,0 +1,124 @@
+.account-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.account-tabs {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: sticky;
+  top: 16px;
+}
+
+.account-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--navy-light);
+  cursor: pointer;
+  text-align: left;
+}
+
+.account-tabs button:hover {
+  background: var(--bg);
+}
+
+.account-tabs button.active {
+  background: var(--purple);
+  color: #fff;
+}
+
+.account-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  max-width: 460px;
+}
+
+.account-card h4 {
+  margin: 0 0 18px;
+  color: var(--navy);
+  font-size: 15px;
+}
+
+.account-success {
+  color: var(--success);
+  font-size: 13px;
+  margin: 0;
+}
+
+.account-empty {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.account-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.account-order-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.account-order-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.account-order-row strong {
+  font-size: 13px;
+  color: var(--navy);
+}
+
+@media (max-width: 800px) {
+  .account-layout {
+    grid-template-columns: 1fr;
+  }
+  .account-tabs {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .account-card {
+    max-width: 100%;
+  }
+}
+
+.account-card-wide {
+  max-width: 100%;
+}
+
+.account-wishlist-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .account-wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

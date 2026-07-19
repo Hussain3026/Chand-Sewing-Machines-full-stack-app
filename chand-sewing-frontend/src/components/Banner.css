@@ -1,0 +1,77 @@
+.csm-banner {
+  max-width: 1280px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+}
+
+.csm-banner-slide {
+  position: relative;
+  height: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.csm-banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.csm-banner-caption {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  max-width: 480px;
+}
+
+.csm-banner-caption h2 {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.csm-banner-caption p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.csm-banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--navy, #1b2a4a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.csm-banner-arrow.prev {
+  left: 16px;
+}
+
+.csm-banner-arrow.next {
+  right: 16px;
+}
+
+.csm-banner .slick-dots li button:before {
+  font-size: 10px;
+}
+
+@media (max-width: 700px) {
+  .csm-banner-slide {
+    height: 260px;
+  }
+  .csm-banner-caption h2 {
+    font-size: 20px;
+  }
+}
