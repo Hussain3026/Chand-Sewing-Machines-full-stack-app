@@ -1,5 +1,5 @@
 ﻿
-Chand Sewing Machines — Full Stack E-Commerce App
+#Chand Sewing Machines — Full Stack E-Commerce App
 
 A full-stack e-commerce storefront for a sewing machine business — React frontend, Node.js/Express/MongoDB backend, with real authentication, cart, wishlist, and order management.
 
