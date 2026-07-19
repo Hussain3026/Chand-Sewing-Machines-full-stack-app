@@ -1,46 +1,39 @@
 ﻿
 #Chand Sewing Machines — Full Stack E-Commerce App
+# Chand Sewing Machines — Full Stack E-Commerce App
 
 A full-stack e-commerce storefront for a sewing machine business — React frontend, Node.js/Express/MongoDB backend, with real authentication, cart, wishlist, and order management.
 
-Tech Stack
+## Tech Stack
 
-Frontend
+**Frontend**
+- React.js (Create React App)
+- React Router DOM
+- Context API (Auth, Cart, Wishlist, Search)
+- Axios
+- React Slick (banner carousel)
+- React Icons
+- Material UI (location picker modal)
 
+**Backend**
+- Node.js + Express
+- MongoDB + Mongoose
+- JWT authentication
+- bcrypt password hashing
 
-React.js (Create React App)
-React Router DOM
-Context API (Auth, Cart, Wishlist, Search)
-Axios
-React Slick (banner carousel)
-React Icons
-Material UI (location picker modal)
+## Features
 
+- Product catalog with categories, ratings, discount pricing
+- Product details page with image gallery, quantity selector, related products
+- Shop page with category / price / rating / keyword filters, sorting, pagination
+- User registration & login (JWT-based)
+- Per-user cart and wishlist (persisted in MongoDB)
+- Full checkout flow — shipping address (auto-fills from last order), payment method selection, order placement
+- Order history ("My Orders") and order confirmation page
+- My Account — edit profile, change password, saved address, wishlist, recent orders
+- Fully responsive (desktop / tablet / mobile)
 
-Backend
-
-
-Node.js + Express
-MongoDB + Mongoose
-JWT authentication
-bcrypt password hashing
-
-
-Features
-
-
-Product catalog with categories, ratings, discount pricing
-Product details page with image gallery, quantity selector, related products
-Shop page with category / price / rating / keyword filters, sorting, pagination
-User registration & login (JWT-based)
-Per-user cart and wishlist (persisted in MongoDB)
-Full checkout flow — shipping address (auto-fills from last order), payment method selection, order placement
-Order history ("My Orders") and order confirmation page
-My Account — edit profile, change password, saved address, wishlist, recent orders
-Fully responsive (desktop / tablet / mobile)
-
-
-Project Structure
+## Project Structure
 
 chand-sewing-machines/
 ├── chand-sewing-frontend/     # React app
