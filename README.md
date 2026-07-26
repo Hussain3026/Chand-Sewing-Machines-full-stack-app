@@ -4,7 +4,7 @@ A full-stack e-commerce storefront for a sewing machine business — React front
 
 ## Live Links
 
-- **Frontend:** [https://chand-sewing-machines.vercel.app](https://chand-sewing-machines.vercel.app)
+- **Frontend:** [https://chand-sewing-machines.vercel.app](https://chand-sewing-machines-full-stack-ap.vercel.app/)
 - **Backend:** [https://chand-sewing-machines-backend.onrender.com](https://chand-sewing-machines-backend.onrender.com)
 
 ## Tech Stack
