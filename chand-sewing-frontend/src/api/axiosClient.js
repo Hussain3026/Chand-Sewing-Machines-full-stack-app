@@ -3,7 +3,7 @@ import axios from "axios";
 // Central axios instance — now pointed at your real backend.
 const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api",
-  timeout: 10000,
+  timeout: 30000,
   headers: {
     "Content-Type": "application/json",
   },
