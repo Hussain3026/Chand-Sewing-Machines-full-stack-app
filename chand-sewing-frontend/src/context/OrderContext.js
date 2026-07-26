@@ -28,8 +28,13 @@ export const OrderProvider = ({ children }) => {
     return data;
   };
 
+  const cancelOrder = async (id) => {
+    const { data } = await axiosClient.put(`/orders/${id}/cancel`);
+    return data;
+  };
+
   return (
-    <OrderContext.Provider value={{ placeOrder, getOrdersForUser, getOrderById }}>
+    <OrderContext.Provider value={{ placeOrder, getOrdersForUser, getOrderById, cancelOrder }}>
       {children}
     </OrderContext.Provider>
   );

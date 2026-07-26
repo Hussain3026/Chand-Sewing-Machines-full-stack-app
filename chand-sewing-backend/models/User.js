@@ -9,6 +9,8 @@ const addressSchema = new mongoose.Schema(
     city: String,
     state: String,
     pincode: String,
+    lat: Number,
+    lng: Number,
   },
   { _id: false }
 );
@@ -23,8 +25,14 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+    phone: { type: String, default: null },
     password: { type: String, required: true, minlength: 6 },
     address: { type: addressSchema, default: null },
+    isEmailVerified: { type: Boolean, default: false },
+    isPhoneVerified: { type: Boolean, default: false },
+    otp: { type: String, default: null },
+    otpExpiry: { type: Date, default: null },
+    role: { type: String, enum: ["user", "admin"], default: "user" },
   },
   { timestamps: true }
 );
@@ -47,7 +55,12 @@ userSchema.methods.toSafeObject = function () {
     id: this._id,
     name: this.name,
     email: this.email,
+    phone: this.phone,
     address: this.address,
+    isEmailVerified: this.isEmailVerified,
+    isPhoneVerified: this.isPhoneVerified,
+    role: this.role,
+    createdAt: this.createdAt,
   };
 };
 

@@ -55,6 +55,11 @@
   border-radius: 20px;
 }
 
+.order-status.cancelled {
+  color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+}
+
 .order-total {
   font-weight: 700;
   font-size: 14px;
@@ -171,4 +176,62 @@
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Cancel order */
+.order-cancel-row {
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+
+.cancel-order-btn {
+  background: none;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancel-order-btn:hover {
+  background: #dc3545;
+  color: #fff;
+}
+
+.cancel-confirm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--navy);
+}
+
+.cancel-yes {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-yes:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-no {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
 }

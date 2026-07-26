@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import OtpVerification from "../components/OtpVerification";
 import "./Auth.css";
 
 export default function Register() {
-  const { register, loading, error } = useAuth();
+  const { register, loading, error, setPendingVerificationEmail } = useAuth();
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -12,6 +13,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formError, setFormError] = useState("");
+  const [showOtp, setShowOtp] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,12 +30,41 @@ export default function Register() {
     }
 
     try {
-      await register({ name, email, password });
+      const result = await register({ name, email, password });
+      if (result?.requiresVerification) {
+        setRegisteredEmail(email);
+        setPendingVerificationEmail(email);
+        setShowOtp(true);
+        return;
+      }
       navigate("/", { replace: true });
     } catch {
       // error already set in context
     }
   };
+
+  const handleOtpSuccess = () => {
+    navigate("/", { replace: true });
+  };
+
+  const handleOtpBack = () => {
+    setShowOtp(false);
+    setPendingVerificationEmail(null);
+  };
+
+  if (showOtp) {
+    return (
+      <div className="section-wrap auth-page">
+        <div className="auth-card">
+          <OtpVerification
+            email={registeredEmail}
+            onSuccess={handleOtpSuccess}
+            onBack={handleOtpBack}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="section-wrap auth-page">

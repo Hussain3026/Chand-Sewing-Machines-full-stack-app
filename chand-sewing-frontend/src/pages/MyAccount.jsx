@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { useOrders } from "../context/OrderContext";
 import { useWishlist } from "../context/WishlistContext";
 import ProductCard from "../components/ProductCard";
+import AddressForm from "../components/AddressForm";
 import { formatPrice } from "../utils/format";
 import "./MyAccount.css";
 
@@ -79,7 +80,8 @@ export default function MyAccount() {
 function ProfileTab({ user, updateProfile }) {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
-  const [status, setStatus] = useState(null); // { type: 'success' | 'error', message }
+  const [phone, setPhone] = useState(user.phone || "");
+  const [status, setStatus] = useState(null);
   const [saving, setSaving] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -87,7 +89,7 @@ function ProfileTab({ user, updateProfile }) {
     setStatus(null);
     setSaving(true);
     try {
-      await updateProfile({ name, email });
+      await updateProfile({ name, email, phone: phone || undefined });
       setStatus({ type: "success", message: "Profile updated successfully." });
     } catch (err) {
       setStatus({ type: "error", message: err.message });
@@ -111,6 +113,15 @@ function ProfileTab({ user, updateProfile }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+          />
+        </label>
+        <label>
+          Phone Number
+          <input
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Optional"
           />
         </label>
 
@@ -218,11 +229,11 @@ function AddressTab({ user, getSavedAddress, saveAddress }) {
       city: "",
       state: "",
       pincode: "",
+      lat: null,
+      lng: null,
     }
   );
   const [status, setStatus] = useState(null);
-
-  const updateField = (field, value) => setForm((prev) => ({ ...prev, [field]: value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -243,36 +254,17 @@ function AddressTab({ user, getSavedAddress, saveAddress }) {
   };
 
   return (
-    <div className="account-card">
+    <div className="account-card account-card-wide">
       <h4>Saved Address</h4>
       <p className="account-empty" style={{ marginBottom: 16 }}>
-        This address auto-fills at checkout so you don't have to re-type it every order.
+        Use the map to select your location, or fill in the form manually. This address auto-fills at checkout.
       </p>
       <form className="auth-form" onSubmit={handleSubmit}>
-        <label>
-          Full Name
-          <input value={form.fullName} onChange={(e) => updateField("fullName", e.target.value)} required />
-        </label>
-        <label>
-          Phone Number
-          <input value={form.phone} onChange={(e) => updateField("phone", e.target.value)} required />
-        </label>
-        <label>
-          Address
-          <input value={form.line1} onChange={(e) => updateField("line1", e.target.value)} required />
-        </label>
-        <label>
-          City
-          <input value={form.city} onChange={(e) => updateField("city", e.target.value)} required />
-        </label>
-        <label>
-          State
-          <input value={form.state} onChange={(e) => updateField("state", e.target.value)} required />
-        </label>
-        <label>
-          Pincode
-          <input value={form.pincode} onChange={(e) => updateField("pincode", e.target.value)} required />
-        </label>
+        <AddressForm
+          initialAddress={form}
+          onAddressChange={setForm}
+          showMap={true}
+        />
 
         {status && (
           <p className={status.type === "success" ? "account-success" : "auth-error"}>

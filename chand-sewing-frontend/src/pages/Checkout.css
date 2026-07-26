@@ -80,6 +80,22 @@
   height: 16px;
 }
 
+.payment-option div {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.payment-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
 .payment-note {
   margin-top: 12px;
   font-size: 12.5px;
@@ -124,4 +140,108 @@
   padding: 0;
   font-size: 12.5px;
   text-decoration: underline;
+}
+
+.map-picker {
+  margin-bottom: 16px;
+}
+
+.map-search-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.map-search-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.map-search-input:focus {
+  border-color: var(--purple);
+}
+
+.leaflet-map-container {
+  width: 100%;
+  height: 350px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  z-index: 1;
+}
+
+.map-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.map-selected-info {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--navy);
+}
+
+.map-selected-info p {
+  margin: 4px 0;
+}
+
+.map-picker-fallback {
+  margin-bottom: 16px;
+}
+
+.otp-verification {
+  text-align: center;
+}
+
+.otp-verification h3 {
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+
+.otp-subtitle {
+  color: var(--text-muted);
+  font-size: 13.5px;
+  margin: 0 0 20px;
+}
+
+.otp-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.otp-resend-btn {
+  background: none;
+  border: none;
+  color: var(--purple);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.otp-timer {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.otp-back-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.otp-back-btn:hover {
+  color: var(--navy);
 }

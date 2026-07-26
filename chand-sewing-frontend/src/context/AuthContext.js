@@ -8,8 +8,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [pendingVerificationEmail, setPendingVerificationEmail] = useState(null);
 
-  // On first load, if a token is saved, fetch the current user with it.
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_KEY);
     if (!token) {
@@ -30,7 +30,10 @@ export const AuthProvider = ({ children }) => {
       const { data } = await axiosClient.post("/auth/register", { name, email, password });
       localStorage.setItem(TOKEN_KEY, data.token);
       setUser(data.user);
-      return data.user;
+      if (data.requiresVerification) {
+        setPendingVerificationEmail(email);
+      }
+      return data;
     } catch (err) {
       setError(err.message);
       throw err;
@@ -44,6 +47,10 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       const { data } = await axiosClient.post("/auth/login", { email, password });
+      if (data.requiresVerification) {
+        setPendingVerificationEmail(data.email || email);
+        return { requiresVerification: true, email: data.email || email };
+      }
       localStorage.setItem(TOKEN_KEY, data.token);
       setUser(data.user);
       return data.user;
@@ -58,10 +65,11 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
     setUser(null);
+    setPendingVerificationEmail(null);
   };
 
-  const updateProfile = async ({ name, email }) => {
-    const { data } = await axiosClient.put("/auth/profile", { name, email });
+  const updateProfile = async ({ name, email, phone }) => {
+    const { data } = await axiosClient.put("/users/profile", { name, email, phone });
     setUser(data.user);
     return data.user;
   };
@@ -70,13 +78,45 @@ export const AuthProvider = ({ children }) => {
     await axiosClient.put("/auth/password", { currentPassword, newPassword });
   };
 
-  // Address lives on the user object now (fetched at login/`/auth/me`),
-  // so reading it is synchronous — same as the old mock version.
   const getSavedAddress = useCallback(() => user?.address || null, [user]);
 
   const saveAddress = async (address) => {
-    const { data } = await axiosClient.put("/auth/address", address);
+    const { data } = await axiosClient.put("/users/address", address);
     setUser((prev) => ({ ...prev, address: data.address }));
+    return data.address;
+  };
+
+  const sendOtp = async (email) => {
+    await axiosClient.post("/auth/otp/send-email", { email });
+  };
+
+  const verifyOtp = async ({ email, otp }) => {
+    const { data } = await axiosClient.post("/auth/otp/verify", { email, otp });
+    if (data.token) {
+      localStorage.setItem(TOKEN_KEY, data.token);
+    }
+    if (data.user) {
+      setUser(data.user);
+    } else {
+      setUser((prev) => (prev ? { ...prev, isEmailVerified: true } : prev));
+    }
+    setPendingVerificationEmail(null);
+    return data;
+  };
+
+  const getUserDashboard = async () => {
+    const { data } = await axiosClient.get("/users/dashboard");
+    return data;
+  };
+
+  const getUserOrders = async () => {
+    const { data } = await axiosClient.get("/users/orders");
+    return data.orders;
+  };
+
+  const getUserWishlist = async () => {
+    const { data } = await axiosClient.get("/users/wishlist");
+    return data.items;
   };
 
   return (
@@ -91,6 +131,13 @@ export const AuthProvider = ({ children }) => {
         changePassword,
         getSavedAddress,
         saveAddress,
+        sendOtp,
+        verifyOtp,
+        pendingVerificationEmail,
+        setPendingVerificationEmail,
+        getUserDashboard,
+        getUserOrders,
+        getUserWishlist,
         loading,
         error,
       }}

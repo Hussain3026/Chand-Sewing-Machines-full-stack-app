@@ -4,17 +4,18 @@ import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { useOrders } from "../context/OrderContext";
 import { formatPrice } from "../utils/format";
+import AddressForm from "../components/AddressForm";
 import "./Checkout.css";
 
 const PAYMENT_METHODS = [
-  { id: "cod", label: "Cash on Delivery" },
-  { id: "card", label: "Credit / Debit Card" },
-  { id: "upi", label: "UPI" },
+  { id: "cod", label: "Cash on Delivery", desc: "Pay with cash when your order is delivered" },
+  { id: "upi", label: "UPI", desc: "Google Pay, PhonePe, Paytm, BHIM" },
+  { id: "card", label: "Credit / Debit Card", desc: "Visa, Mastercard, RuPay" },
 ];
 
 export default function Checkout() {
   const { cartItems, cartTotal, refreshCart } = useCart();
-  const { user, getSavedAddress } = useAuth();
+  const { user, getSavedAddress, saveAddress } = useAuth();
   const { placeOrder } = useOrders();
   const navigate = useNavigate();
 
@@ -25,18 +26,20 @@ export default function Checkout() {
     city: "",
     state: "",
     pincode: "",
+    lat: null,
+    lng: null,
   });
 
-  // Pre-fill with whatever address was used last time, if any.
   const [usingSavedAddress, setUsingSavedAddress] = useState(false);
+
   useEffect(() => {
     const saved = getSavedAddress();
-    if (saved) {
+    if (saved && saved.line1) {
       setAddress(saved);
       setUsingSavedAddress(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const [placing, setPlacing] = useState(false);
@@ -50,9 +53,6 @@ export default function Checkout() {
       </div>
     );
   }
-
-  const updateField = (field, value) =>
-    setAddress((prev) => ({ ...prev, [field]: value }));
 
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
@@ -69,9 +69,7 @@ export default function Checkout() {
 
     setPlacing(true);
     try {
-      // Backend builds the order from your server-side cart, saves
-      // this address to your profile, and empties the cart — all in
-      // one call.
+      await saveAddress(address);
       const order = await placeOrder({ shippingAddress: address, paymentMethod });
       await refreshCart();
       navigate(`/order-success/${order._id}`, { replace: true });
@@ -105,6 +103,8 @@ export default function Checkout() {
                       city: "",
                       state: "",
                       pincode: "",
+                      lat: null,
+                      lng: null,
                     });
                     setUsingSavedAddress(false);
                   }}
@@ -113,59 +113,11 @@ export default function Checkout() {
                 </button>
               </div>
             )}
-            <div className="checkout-grid">
-              <label>
-                Full Name
-                <input
-                  required
-                  value={address.fullName}
-                  onChange={(e) => updateField("fullName", e.target.value)}
-                />
-              </label>
-              <label>
-                Phone Number
-                <input
-                  required
-                  value={address.phone}
-                  onChange={(e) => updateField("phone", e.target.value)}
-                  placeholder="10-digit mobile number"
-                />
-              </label>
-              <label className="span-2">
-                Address
-                <input
-                  required
-                  value={address.line1}
-                  onChange={(e) => updateField("line1", e.target.value)}
-                  placeholder="House no, street, area"
-                />
-              </label>
-              <label>
-                City
-                <input
-                  required
-                  value={address.city}
-                  onChange={(e) => updateField("city", e.target.value)}
-                />
-              </label>
-              <label>
-                State
-                <input
-                  required
-                  value={address.state}
-                  onChange={(e) => updateField("state", e.target.value)}
-                />
-              </label>
-              <label>
-                Pincode
-                <input
-                  required
-                  value={address.pincode}
-                  onChange={(e) => updateField("pincode", e.target.value)}
-                  placeholder="6-digit pincode"
-                />
-              </label>
-            </div>
+            <AddressForm
+              initialAddress={address}
+              onAddressChange={setAddress}
+              showMap={true}
+            />
           </div>
 
           <div className="checkout-block">
@@ -179,15 +131,16 @@ export default function Checkout() {
                     checked={paymentMethod === pm.id}
                     onChange={() => setPaymentMethod(pm.id)}
                   />
-                  {pm.label}
+                  <div>
+                    <span className="payment-label">{pm.label}</span>
+                    <span className="payment-desc">{pm.desc}</span>
+                  </div>
                 </label>
               ))}
             </div>
             {paymentMethod !== "cod" && (
               <p className="payment-note">
-                This is a demo checkout — no real payment is processed. In
-                production this step would hand off to your payment
-                gateway.
+                This payment option will be available soon. Currently only Cash on Delivery is active.
               </p>
             )}
           </div>
@@ -214,7 +167,7 @@ export default function Checkout() {
             <span>{formatPrice(cartTotal)}</span>
           </div>
           <button type="submit" className="btn-buy-now" style={{ width: "100%", marginTop: 12 }} disabled={placing}>
-            {placing ? "Placing Order..." : "Place Order"}
+            {placing ? "Placing Order..." : paymentMethod === "cod" ? "Place Order (COD)" : "Place Order"}
           </button>
         </div>
       </form>

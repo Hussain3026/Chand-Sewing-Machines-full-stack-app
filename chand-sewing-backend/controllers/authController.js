@@ -1,5 +1,22 @@
 const User = require("../models/User");
 const generateToken = require("../utils/generateToken");
+const sendEmail = require("../utils/sendEmail");
+
+const generateOTP = () => String(Math.floor(100000 + Math.random() * 900000));
+
+const otpTemplate = (otp, name) => `
+  <div style="font-family: Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 24px;">
+    <h2 style="color: #1b2a4a;">Chand Sewing Machines</h2>
+    <p style="color: #333; font-size: 15px;">Hi ${name},</p>
+    <p style="color: #333; font-size: 15px;">Your verification code is:</p>
+    <div style="background: #f5f6fa; border-radius: 10px; padding: 20px; text-align: center; margin: 20px 0;">
+      <span style="font-size: 32px; font-weight: 800; color: #8e0aa0; letter-spacing: 6px;">${otp}</span>
+    </div>
+    <p style="color: #6b7280; font-size: 13px;">This code expires in 10 minutes. If you didn't request this, please ignore this email.</p>
+    <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
+    <p style="color: #6b7280; font-size: 12px;">Chand Sewing Machines — Your trusted sewing partner</p>
+  </div>
+`;
 
 // @route POST /api/auth/register
 const register = async (req, res, next) => {
@@ -15,8 +32,30 @@ const register = async (req, res, next) => {
     }
 
     const user = await User.create({ name, email, password });
+
+    const otp = generateOTP();
+    user.otp = otp;
+    user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
+    await user.save();
+
+    console.log(`\n[OTP] === REGISTER OTP for ${user.email}: ${otp} ===\n`);
+
+    try {
+      await sendEmail({
+        to: user.email,
+        subject: "Verify your email — Chand Sewing Machines",
+        html: otpTemplate(otp, user.name),
+      });
+    } catch (emailErr) {
+      console.error("Failed to send verification email:", emailErr.message);
+    }
+
     const token = generateToken(user._id);
-    res.status(201).json({ token, user: user.toSafeObject() });
+    res.status(201).json({
+      token,
+      user: user.toSafeObject(),
+      requiresVerification: !user.isEmailVerified,
+    });
   } catch (err) {
     next(err);
   }
@@ -33,6 +72,31 @@ const login = async (req, res, next) => {
     const user = await User.findOne({ email: email.toLowerCase() });
     if (!user || !(await user.matchPassword(password))) {
       return res.status(401).json({ message: "Invalid email or password." });
+    }
+
+    if (!user.isEmailVerified) {
+      const otp = generateOTP();
+      user.otp = otp;
+      user.otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
+      await user.save();
+
+      console.log(`\n[OTP] === LOGIN OTP for ${user.email}: ${otp} ===\n`);
+
+      try {
+        await sendEmail({
+          to: user.email,
+          subject: "Verify your email — Chand Sewing Machines",
+          html: otpTemplate(otp, user.name),
+        });
+      } catch (emailErr) {
+        console.error("Failed to send verification email:", emailErr.message);
+      }
+
+      return res.json({
+        requiresVerification: true,
+        email: user.email,
+        message: "Please verify your email. An OTP has been sent.",
+      });
     }
 
     const token = generateToken(user._id);
@@ -93,9 +157,9 @@ const changePassword = async (req, res, next) => {
 // @route PUT /api/auth/address
 const saveAddress = async (req, res, next) => {
   try {
-    const { fullName, phone, line1, city, state, pincode } = req.body;
+    const { fullName, phone, line1, city, state, pincode, lat, lng } = req.body;
     const user = await User.findById(req.user._id);
-    user.address = { fullName, phone, line1, city, state, pincode };
+    user.address = { fullName, phone, line1, city, state, pincode, lat, lng };
     await user.save();
     res.json({ address: user.address });
   } catch (err) {

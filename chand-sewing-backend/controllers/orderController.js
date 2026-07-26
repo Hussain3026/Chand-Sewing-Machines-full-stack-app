@@ -2,8 +2,6 @@ const Order = require("../models/Order");
 const Cart = require("../models/Cart");
 
 // @route POST /api/orders  { shippingAddress, paymentMethod }
-// Builds the order from whatever is currently in the user's cart,
-// then empties the cart.
 const placeOrder = async (req, res, next) => {
   try {
     const { shippingAddress, paymentMethod } = req.body;
@@ -34,10 +32,9 @@ const placeOrder = async (req, res, next) => {
       total,
       shippingAddress,
       paymentMethod,
-      status: paymentMethod === "cod" ? "Placed (Cash on Delivery)" : "Paid",
+      status: "Placed (Cash on Delivery)",
     });
 
-    // Remember this address for next time, same as before.
     req.user.address = shippingAddress;
     await req.user.save();
 
@@ -74,4 +71,32 @@ const getOrderById = async (req, res, next) => {
   }
 };
 
-module.exports = { placeOrder, getMyOrders, getOrderById };
+// @route PUT /api/orders/:id/cancel
+const cancelOrder = async (req, res, next) => {
+  try {
+    const order = await Order.findOne({ _id: req.params.id, user: req.user._id });
+    if (!order) {
+      return res.status(404).json({ message: "Order not found." });
+    }
+
+    if (order.status === "Cancelled") {
+      return res.status(400).json({ message: "Order is already cancelled." });
+    }
+
+    if (order.status === "Delivered" || order.status === "Shipped") {
+      return res.status(400).json({ message: "Cannot cancel — order is already " + order.status.toLowerCase() + "." });
+    }
+
+    order.status = "Cancelled";
+    await order.save();
+
+    res.json({ message: "Order cancelled successfully.", order });
+  } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(404).json({ message: "Order not found." });
+    }
+    next(err);
+  }
+};
+
+module.exports = { placeOrder, getMyOrders, getOrderById, cancelOrder };

@@ -19,6 +19,8 @@ const addressSchema = new mongoose.Schema(
     city: String,
     state: String,
     pincode: String,
+    lat: Number,
+    lng: Number,
   },
   { _id: false }
 );
@@ -29,7 +31,7 @@ const orderSchema = new mongoose.Schema(
     items: { type: [orderItemSchema], required: true },
     total: { type: Number, required: true },
     shippingAddress: { type: addressSchema, required: true },
-    paymentMethod: { type: String, enum: ["cod", "card", "upi"], required: true },
+    paymentMethod: { type: String, enum: ["cod"], required: true },
     status: { type: String, default: "Placed" },
   },
   { timestamps: true }
